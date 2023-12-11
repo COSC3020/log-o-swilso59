@@ -13,28 +13,20 @@ might help with the notation for mathematical expressions.
 
 $T(n) \in O(f(n)) \iff \exists c, n_0: T(n) \leq c \cdot f(n) \forall n \geq n_0$
 
-We want to show that $O(\log_2(n))$ is equivalent to $O(\log_5(n))$ up to a constant factor, which means there exists a constant $c$ such that:
-
-$\log_2(n) = c \cdot \log_5(n)$
-
 To prove this, we will use the change of base formula for logarithms:
 
 $\log_2(n) = \frac{\log_5(n)}{\log_5(2)}$
 
-Now, let's set $c = \frac{1}{\log_5(2)}$, so we have:
+Now, substituting this into the inequality, we get:
 
-$c = \frac{1}{\log_5(2)}$
+$c_1 \cdot \frac{\log_5(n)}{\log_5(2)} \leq \log_5(n) \leq c_2 \cdot \frac{\log_5(n)}{\log_5(2)}$
 
-Then, we can rewrite $\log_2(n)$ as:
+Multiplying each term by $\log_5(2)$ (keeping in mind that $\log_5(2)$ is positive), we obtain:
 
-$\log_2(n) = \frac{1}{\log_5(2)} \cdot \log_5(n)$
+$c_1 \cdot \log_5(n) \leq \log_5(n) \leq c_2 \cdot \log_5(n)$
 
-Now, if we multiply both sides by $\log_5(2)$, we get:
+Now, let $c_1 = 1$ and $c_2 = \log_5(2)$. This gives us:
 
-$\log_2(n) \cdot \log_5(2) = \log_5(n)$
+$\log_5(n) \leq \log_5(n) \leq \log_5(2) \cdot \log_5(n)$
 
-Since $c$ is a constant $\left(\frac{1}{\log_5(2)}\right)$, we have shown that:
-
-$\log_2(n) = c \cdot \log_5(n)$
-
-This proves that $O(\log_2(n))$ is equivalent to $O(\log_5(n))$ up to a constant factor. Therefore, when analyzing the asymptotic complexity of algorithms, you can use either base 2 or base 5 logarithms interchangeably, and the choice of base does not affect the big O notation or the overall growth rate of the algorithm.
+Since these inequalities hold for any $n$ greater than or equal to some $n_0$, we have shown that $O(\log_2(n))$ is indeed equivalent to $O(\log_5(n))$. Therefore, when analyzing the asymptotic complexity of algorithms, the choice of base does not affect the big O notation or the overall growth rate of the algorithm.
